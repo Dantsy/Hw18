@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package ru.otus.generated;
+
+option java_multiple_files = true;
+
+import "google/protobuf/empty.proto";
+
+message Request {
+    int64 id = 1;
+    string content = 2;
+}
+
+message Response {
+    int64 id = 1;
+    string content = 2;
+}
+
+service LoadBalancerService {
+    rpc processRequest(Request) returns (stream Response);
+}
+
+service NodeService {
+    rpc processRequest(Request) returns (Response);
+}
